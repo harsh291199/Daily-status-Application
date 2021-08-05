@@ -1,1 +1,21 @@
 <h1 class="text-center mt-4">Preview Email</h1>
+
+<h2 class="text-center mt-4">Subject Line: Status update for <%= @status.date %> </h2>
+<h3 class="text-center mt-4">Here is the Status update</h3>
+
+<table style="width:50%" class="center">
+  <tr>
+    <th>Date</th>
+    <th>Tasks</th> 
+    <th>PR Links</th>
+    <th>Hours</th>
+  </tr>
+  <tr>
+    <td><%= @status.date %></td>
+    <td><%= @status.tasks %></td>
+    <td><%= @status.pr_links %></td> 
+    <td><%= @status.hours %></td>
+  </tr>
+</table>
+
+

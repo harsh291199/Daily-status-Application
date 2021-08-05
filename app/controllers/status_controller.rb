@@ -2,9 +2,13 @@
 
 # Status Controller
 class StatusController < ApplicationController
-  def index; end
+  def index
+    @statuses = Status.all
+  end
 
-  def show; end
+  def show
+    @status = Status.find(params[:id])
+  end
 
   def new; end
 
