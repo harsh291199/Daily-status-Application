@@ -2,12 +2,15 @@
   font-size: 3rem;
 }
 
+*{
+  font-family: "Delicious";
+}
+
 #logo{
   color: white; 
 }
 
-html,
-body {
+html, body {
   height: 100%;
 }
 
@@ -16,6 +19,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 500px;
+  text-align: center;
 }
 
 #page-content {
