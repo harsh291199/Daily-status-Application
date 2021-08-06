@@ -2,8 +2,7 @@
 
 # Status Model
 class Status < ApplicationRecord
+  has_many :tasks, dependent: :destroy
+  accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
   validates :date, presence: true
-  validates :tasks, presence: true, length: { minimum: 15, maximum: 300 }
-  validates :pr_links, presence: true, length: { minimum: 10, maximum: 100 }
-  validates :hours, presence: true, numericality: { in: 0..8 }
 end
