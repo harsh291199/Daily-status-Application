@@ -2,5 +2,5 @@
 
 Rails.application.routes.draw do
   root 'pages#home'
-  resources :status
+  resources :statuses
 end

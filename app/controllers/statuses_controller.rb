@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Status Controller
-class StatusController < ApplicationController
+class StatusesController < ApplicationController
   before_action :set_status, only: %i[show edit update destroy]
 
   def index
@@ -16,8 +16,8 @@ class StatusController < ApplicationController
 
   def create
     @status = Status.new(status_params)
-
     if @status.save
+      flash[:notice] = 'Status update was created successfully.'
       redirect_to @status
     else
       render 'new'
@@ -28,6 +28,7 @@ class StatusController < ApplicationController
 
   def update
     if @status.update(status_params)
+      flash[:notice] = 'Status update was updated successfully.'
       redirect_to @status
     else
       render 'edit'
@@ -36,7 +37,7 @@ class StatusController < ApplicationController
 
   def destroy
     @status.destroy
-    redirect_to status_index_path
+    redirect_to statuses_path
   end
 
   private
