@@ -3,28 +3,28 @@
   <%= render 'shared/errors', obj: @status %>
   <%= form_with(model: @status, class: "shadow p-3 mb-3 bg-white rounded", local: true) do |f| %>
     <div class="row mb-3">
-      <%= f.label :date, class: "col-sm-2 col-form-label text-dark" %>
+      <%= f.label :date, class: "col-sm-2 col-form-label fs-3" %>
       <div class="col-sm-10"> 
         <%= f.text_field :date, class: "form-control shadow rounded", placeholder: "Date of the day" %>
       </div>
     </div>
 
-    <div class="row mb-3">
-      <%= f.label :tasks, class: "col-sm-2 col-form-label text-dark" %>
+    <div class="mb-3 row">
+      <%= f.label :tasks, class: "col-sm-2 col-form-label fs-3" %>
       <div class="col-sm-10"> 
         <%= f.text_area :tasks, rows: 3, class: "form-control shadow rounded", placeholder: "Task of the day" %>
       </div>
     </div>
 
     <div class="row mb-3">
-      <%= f.label :pr_links, class: "col-sm-2 col-form-label text-dark" %>
+      <%= f.label :pr_links, class: "col-sm-2 col-form-label fs-3" %>
       <div class="col-sm-10"> 
         <%= f.text_area :pr_links, rows: 3, class: "form-control shadow rounded", placeholder: "PR of the GitHub" %>
       </div>
     </div>
 
     <div class="row mb-3">
-      <%= f.label :hours, class: "col-sm-2 col-form-label text-dark" %>
+      <%= f.label :hours, class: "col-sm-2 col-form-label fs-3" %>
       <div class="col-sm-10"> 
         <%= f.text_field :hours, class: "form-control shadow rounded", placeholder: "Hours you spent" %>
       </div>
@@ -36,4 +36,11 @@
    
   <% end %>
   </div>
+
+  <div class="d-flex justify-content-center">
+    <%= link_to 'Home page', root_path, class: "btn btn-outline-dark mb-2" %>
+    <%= link_to 'Status History', statuses_path, class: "btn btn-outline-dark ms-2 mb-2" %>
+  </div>
 </div>
+
+

@@ -5,7 +5,7 @@ class StatusesController < ApplicationController
   before_action :set_status, only: %i[show edit update destroy]
 
   def index
-    @statuses = Status.all
+    @statuses = Status.paginate(page: params[:page], per_page: 30)
   end
 
   def show; end
@@ -37,7 +37,7 @@ class StatusesController < ApplicationController
 
   def destroy
     @status.destroy
-    redirect_to statuses_path
+    redirect_to root_path
   end
 
   private
