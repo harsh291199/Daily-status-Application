@@ -2,10 +2,12 @@
 
 one:
   task_name: MyText
-  pr_link: MyText
+  pr_links: MyText
   hours: 1.5
+  status: one
 
 two:
   task_name: MyText
-  pr_link: MyText
+  pr_links: MyText
   hours: 1.5
+  status: two

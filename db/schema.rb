@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_06_110600) do
+ActiveRecord::Schema.define(version: 2021_08_07_061926) do
 
   create_table "statuses", force: :cascade do |t|
     t.date "date"
@@ -20,10 +20,13 @@ ActiveRecord::Schema.define(version: 2021_08_06_110600) do
 
   create_table "tasks", force: :cascade do |t|
     t.text "task_name"
-    t.text "pr_link"
+    t.text "pr_links"
     t.float "hours"
+    t.integer "status_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["status_id"], name: "index_tasks_on_status_id"
   end
 
+  add_foreign_key "tasks", "statuses"
 end
