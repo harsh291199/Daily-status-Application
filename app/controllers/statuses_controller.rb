@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Status Controller
+# Statuses Controller
 class StatusesController < ApplicationController
   before_action :set_status, only: %i[show edit update destroy]
 
@@ -8,16 +8,20 @@ class StatusesController < ApplicationController
     @statuses = Status.paginate(page: params[:page], per_page: 30)
   end
 
-  def show; end
+  def show
+    @tasks = @status.tasks
+  end
 
   def new
     @status = Status.new
+    @tasks = @status.tasks.build
   end
 
   def create
     @status = Status.new(status_params)
     if @status.save
-      flash[:notice] = 'Status update was created successfully.'
+      StatusMailer.with(status: @status).new_status_email.deliver_later
+      flash[:notice] = 'Status update was created & Mail has sent successfully'
       redirect_to @status
     else
       render 'new'
@@ -37,6 +41,7 @@ class StatusesController < ApplicationController
 
   def destroy
     @status.destroy
+    flash[:notice] = 'Status was successfully deleted'
     redirect_to root_path
   end
 
@@ -47,6 +52,6 @@ class StatusesController < ApplicationController
   end
 
   def status_params
-    params.require(:status).permit(:date, :tasks, :pr_links, :hours)
+    params.require(:status).permit(:date, tasks_attributes: [:id, :task_name, :pr_links, :hours, :_destroy])
   end
 end

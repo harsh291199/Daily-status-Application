@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-# Status Model
+# Status model
 class Status < ApplicationRecord
-  has_many :tasks, inverse_of: :status
-  accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
-  validates :date, presence: true
+  has_many :tasks, dependent: :destroy
+  accepts_nested_attributes_for :tasks
 end
