@@ -6,27 +6,67 @@
           <div class="row mb-3 fw-bold">
             <%= f.label :date %>
             <div>
-              <%= f.date_field :date %>
+              <%= f.date_field :date, min:"2001-01-01", max:"#{Date.today.to_s}" %>
             </div>
           </div>
            
+          <div>
+            <%= f.fields_for :tasks do |t| %>
+            <%= render "task_fields", :f => t %>
+            <% end %>
             <div>
-              <%= f.fields_for :tasks do |t| %>
-              <%= render "task_fields", :f => t %>
-              <% end %>
-              <div>
-                <br>
-                  <%= link_to_add_association f, :tasks do %>
+              <br>
+                <%= link_to_add_association f, :tasks do %>
                   <button class="btn btn-outline-success" type="submit">Add task</button>
-                  <% end %>
-              </div>
+                <% end %>
+
+                <button type="button" class="btn btn-outline-secondary ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  Preview Mail
+                </button>
             </div>
+          </div>
            
-            <div class="d-flex justify-content-center">
-              <%= f.submit class: "btn btn-outline-success mb-3"%>
-            </div>
+          <div class="d-flex justify-content-center">
+            <%= f.submit class: "btn btn-outline-success mb-3"%>
           </div>
         <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Training status</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p>Hi Nishant sir, <br>
+          <p class="ml-5">Please find the status for Today.</p>
+          <p>
+            <table class="table table-light table-hover text-center">
+              <tr class="table-dark text-center">
+                <th>Tasks</th>
+                <th>PR Links</th>
+                <th>Hours</th>
+              </tr>
+
+              <% @status.tasks.each do |task| %>
+                <tr class="text-center">
+                  <td><%= task.task_name %></td>
+                  <td><%= task.pr_links %></td>
+                  <td><%= task.hours %></td>
+                </tr>
+              <% end %>
+            </table>
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done!</button>
+      </div>
     </div>
   </div>
 </div>

@@ -5,7 +5,7 @@ class StatusesController < ApplicationController
   before_action :set_status, only: %i[show edit update destroy]
 
   def index
-    @statuses = Status.paginate(page: params[:page], per_page: 30)
+    @statuses = Status.paginate(page: params[:page], per_page: 3)
   end
 
   def show
@@ -41,7 +41,7 @@ class StatusesController < ApplicationController
 
   def destroy
     @status.destroy
-    flash[:notice] = 'Status was successfully deleted'
+    flash[:alert] = 'Status was successfully deleted'
     redirect_to root_path
   end
 
