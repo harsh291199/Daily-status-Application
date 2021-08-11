@@ -2,40 +2,40 @@
   <div class="row justify-content-center">
     <div class="col-10">
       <%= render 'shared/errors', obj: @status %>
-        <%= form_for(@status) do |f| %>
-          <div class="row mb-3 fw-bold">
-            <%= f.label :date %>
-            <div>
-              <%= f.date_field :date, min:"2001-01-01", max:"#{Date.today.to_s}" %>
-            </div>
-          </div>
-           
+      <%= form_for(@status) do |f| %>
+        <div class="row mb-3 fw-bold">
+          <%= f.label :date %>
           <div>
-            <%= f.fields_for :tasks do |t| %>
-            <%= render "task_fields", :f => t %>
+            <%= f.date_field :date, min:"2001-01-01", max:"#{Date.today.to_s}" %>
+          </div>
+        </div>
+         
+        <div>
+          <%= f.fields_for :tasks do |t| %>
+            <%= render "task_fields", f: t %>
+          <% end %>
+          <div>
+            <br>
+            <%= link_to_add_association f, :tasks do %>
+              <button class="btn btn-outline-success" type="submit">Add task</button>
             <% end %>
-            <div>
-              <br>
-                <%= link_to_add_association f, :tasks do %>
-                  <button class="btn btn-outline-success" type="submit">Add task</button>
-                <% end %>
 
-                <button type="button" class="btn btn-outline-secondary ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                  Preview Mail
-                </button>
-            </div>
+            <button type="button" class="btn btn-outline-secondary ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              Preview Mail
+            </button>
           </div>
-           
-          <div class="d-flex justify-content-center">
-            <%= f.submit class: "btn btn-outline-success mb-3"%>
-          </div>
-        <% end %>
+        </div>
+         
+        <div class="d-flex justify-content-center">
+          <%= f.submit class: "btn btn-outline-success mb-3"%>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
 
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Training status</h5>
@@ -45,22 +45,23 @@
       <div class="modal-body">
         <p>Hi Nishant sir, <br>
           <p class="ml-5">Please find the status for Today.</p>
-          <p>
-            <table class="table table-light table-hover text-center">
-              <tr class="table-dark text-center">
-                <th>Tasks</th>
-                <th>PR Links</th>
-                <th>Hours</th>
-              </tr>
-
-              <% @status.tasks.each do |task| %>
-                <tr class="text-center">
-                  <td><%= task.task_name %></td>
-                  <td><%= task.pr_links %></td>
-                  <td><%= task.hours %></td>
+            <p>
+              <table class="table table-light table-hover text-center">
+                <tr class="table-dark text-center">
+                  <th>Tasks</th>
+                  <th>PR Links</th>
+                  <th>Hours</th>
                 </tr>
-              <% end %>
-            </table>
+  
+                <% @status.tasks.each do |task| %>
+                  <tr class="text-center">
+                    <td><input type="text" class="form-control" id="text_name" disabled></td>
+                    <td><input type="text" class="form-control" id="text_pr" disabled></td>
+                    <td><input type="text" class="form-control" id="text_hours" disabled></td>
+                  </tr>
+                <% end %>
+              </table>
+            </p>
         </p>
       </div>
 

@@ -1,5 +1,7 @@
 <h2 class="text-center mt-4">Status update for <%= @status.date.strftime('%d/%m/%Y') %></h2>
+
 <h3 class="text-center mt-4">Total Tasks: <%= @tasks.count %></h3>
+
 <div class="table-responsive">
   <table style="width:70%" class="table table-light table-hover center">
     <tr class="table-dark text-center">
@@ -9,12 +11,12 @@
     </tr>
     
     <% @tasks.each do |task| %>
-    <tr class="text-center">
-      <td><%= task.task_name %></td>
-      <td><%= link_to task.pr_links, task.pr_links, target: '_blank' %></td>
-      <td><%= task.hours %></td>
+      <tr class="text-center">
+        <td><%= task.task_name %></td>
+        <td><%= link_to task.pr_links, task.pr_links, target: '_blank' %></td>
+        <td><%= task.hours %></td>
+      </tr>
     <% end %>
-    </tr>
   </table>
 
   <h3 class="text-center mt-4">Total Hours: <%= pluralize(@status.total_hours, "hour") %></h3>

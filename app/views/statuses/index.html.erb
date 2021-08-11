@@ -12,11 +12,12 @@
       <th>Date</th>
       <th>Action</th>
     </tr>
+
     <% @statuses.each do |status| %>
-    <tr>
-      <td><%= status.date.strftime('%d/%m/%Y') %></td>
-      <td><%= link_to 'View', status_path(status), class:"btn btn-outline-primary" %></td>
-    </tr>
+      <tr>
+        <td><%= status.date.strftime('%d/%m/%Y') %></td>
+        <td><%= link_to 'View', status_path(status), class:"btn btn-outline-primary" %></td>
+      </tr>
     <% end %>
   </table>
 </div>

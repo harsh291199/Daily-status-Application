@@ -14,11 +14,11 @@
         </tr>
       
         <% @status.tasks.each do |task| %>
-        <tr class="text-center">
-          <td><%= task.task_name %></td>
-          <td><%= task.pr_links %></td>
-          <td><%= task.hours %></td>
-        </tr>
+          <tr class="text-center">
+            <td><%= task.task_name %></td>
+            <td><%= task.pr_links %></td>
+            <td><%= task.hours %></td>
+          </tr>
         <% end %>
       </table>
     </p>
