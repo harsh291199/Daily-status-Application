@@ -9,4 +9,6 @@ class Status < ApplicationRecord
   def total_hours
     tasks.sum(:hours)
   end
+
+  has_one_attached :file
 end

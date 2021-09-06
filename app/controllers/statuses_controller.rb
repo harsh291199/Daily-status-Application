@@ -52,6 +52,6 @@ class StatusesController < ApplicationController
   end
 
   def status_params
-    params.require(:status).permit(:date, tasks_attributes: %i[id task_name pr_links hours _destroy])
+    params.require(:status).permit(:date, :file, tasks_attributes: %i[id task_name pr_links hours _destroy])
   end
 end
