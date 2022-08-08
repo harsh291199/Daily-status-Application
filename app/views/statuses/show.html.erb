@@ -1,0 +1,31 @@
+<h2 class="text-center mt-4">Status update for <%= @status.date.strftime('%d/%m/%Y') %></h2>
+
+<h3 class="text-center mt-4">Total Tasks: <%= @tasks.count %></h3>
+
+<div class="table-responsive">
+  <table style="width:70%" class="table table-light table-hover center">
+    <tr class="table-dark text-center">
+      <th>Tasks</th>
+      <th>PR Links</th>
+      <th>Hours</th>
+    </tr>
+    
+    <% @tasks.each do |task| %>
+      <tr class="text-center">
+        <td><%= task.task_name %></td>
+        <td><%= link_to task.pr_links, task.pr_links, target: '_blank' %></td>
+        <td><%= task.hours %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <h3 class="text-center mt-4">Total Hours: <%= pluralize(@status.total_hours, "hour") %></h3>
+  <div class="d-flex justify-content-center">
+    <%= link_to 'EDIT', edit_status_path(@status), class:"btn btn-outline-primary mb-3" %>
+    <%= link_to 'DELETE', status_path(@status), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-outline-danger ms-2 mb-3" %>
+  </div>
+</div> 
+
+<div class="d-flex justify-content-center">
+  <%= link_to "Status History", statuses_path, class: "btn btn-outline-dark mb-3 mt-3"%>
+</div>
